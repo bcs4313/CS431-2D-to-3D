@@ -55,6 +55,13 @@ def rgb_to_his(channel):
 
     return [hue % 360, intensity * 255, saturation * 255]
 
+def convert_to_grayscale(image_array):
+    grayscale_image = numpy.zeros((image_array.shape[0], image_array.shape[1]), numpy.uint8)
+    for y in range(image_array.shape[0]):
+        for x in range(image_array.shape[1]):
+            c = image_array[y][x]
+            grayscale_image[y][x] = int(0.299 * c[2] + 0.587 * c[1] + 0.114 * c[0])
+    return grayscale_image
 
 def hsv_to_hsl(channel):
     h = channel[0]
